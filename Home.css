@@ -1,0 +1,855 @@
+
+/* 
+================================================================================
+link de uma blibioteca padrão de Css para Mapas:
+================================================================================
+
+https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+
+:O OMGGGGGG!
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠀⠐⠂⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⡠⠴⠤⣤⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⢀⣀⣀⣀⣀⡀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠀⠈⠉⢁⣈⣿⣿⣿⣷⡀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠠⠴⠒⠛⠛⠛⠛⠛⠛⠛⠷⠄⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀⣀⣤⣴⣶⣶⣶⣶⣶⣶⣤⣄⣀⠀⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠀⣠⣾⣿⠿⠟⠛⠛⠛⠛⠛⠿⠿⣿⣿⣷⣆⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠀⠐⠋⠉⣀⡠⠤⠔⠒⠒⠒⠠⠤⢀⡀⠉⠛⠿⣆⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⢀⣠⠔⠊⠁⠀⢠⣤⣤⣶⣤⣤⣤⡀⠈⠑⠠⢄⠈⠁⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⢴⠋⠀⠀⠰⣧⠀⢸⣿⣿⣿⣿⣿⣿⡇⠀⣴⣄⠀⠑⠢⣤⡀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⢀⣄⠀⠀⢾⣦⠀⠙⠦⠀⠙⠿⠿⠿⠿⠋⠀⣴⠋⠁⣀⣤⣠⣿⣷⡀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⢀⠀⠙⢷⣶⣾⣿⣷⣤⣄⣰⣦⣄⣀⣀⣠⣴⣾⣿⣷⠾⠿⠀⠈⠉⠛⠓⠀⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⢀⠈⠓⢤⣀⠉⠙⠻⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣅⣀⣠⣤⣄⡀⠀⠒⠲⠶⠄⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠉⠀⠀⠀⠙⠷⣶⣤⣤⣀⣀⣀⡉⠉⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣤⣀⣀⣀⠀⠹⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⠏⠀⣰⣿⣷⣄⡀⠙⠢⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠹⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣇⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣸⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+
+*/
+
+/*
+================================================================================
+ESTILOS DE POSICIONAMENTO BÁSICO
+Define as propriedades de layout essenciais (posição, largura, altura).
+================================================================================
+*/
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+    position: absolute; /* Todos os componentes principais do mapa usam posicionamento absoluto */
+    left: 0;
+    top: 0;
+    }
+.leaflet-container {
+    overflow: hidden; /* Garante que o conteúdo do mapa não exceda o contêiner */
+    }
+
+/*
+================================================================================
+ESTILOS DE INTERAÇÃO DO USUÁRIO
+Define o comportamento ao interagir (seleção, arrastar) no mapa.
+================================================================================
+*/
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+    /* Impede que o usuário selecione/arraste os tiles do mapa (ladrilhos) ou ícones de marcador */
+    -webkit-user-select: none;
+        -moz-user-select: none;
+            user-select: none;
+      -webkit-user-drag: none;
+    }
+
+.leaflet-tile::selection {
+    /* Garante que a seleção de texto nos tiles seja transparente */
+    background: transparent;
+}
+
+/*
+
+================================================================================
+AJUSTES DE RENDERIZAÇÃO E DIMENSÃO
+Define como as imagens e SVGs dentro do mapa são exibidos.
+================================================================================
+*/
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+    display: block; /* Garante que ícones e sombras sejam tratados como blocos */
+    }
+.leaflet-container .leaflet-overlay-pane svg {
+    /* Remove a largura e altura máximas para que os SVGs (como polígonos) preencham o espaço conforme o necessário */
+    max-width: none !important;
+    max-height: none !important;
+    }
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+    /* Remove restrições de dimensão para elementos de imagem do mapa */
+    max-width: none !important;
+    max-height: none !important;
+    width: auto;
+    padding: 0;
+    }
+
+.leaflet-container img.leaflet-tile {
+    /* Define como as imagens de tile se misturam com o fundo (pode ser usado para efeitos) */
+    mix-blend-mode: plus-lighter;
+}
+
+/*
+================================================================================
+INTERAÇÕES TOUCH (Dispositivos Móveis)
+Define como o mapa reage ao toque para zoom e arrastar.
+================================================================================
+*/
+.leaflet-container.leaflet-touch-zoom {
+    /* Permite pan (movimento) no eixo X e Y, desativando ações padrão de toque */
+    -ms-touch-action: pan-x pan-y;
+    touch-action: pan-x pan-y;
+    }
+.leaflet-container.leaflet-touch-drag {
+    /* Permite pinch-zoom (beliscar para zoom) */
+    -ms-touch-action: pinch-zoom;
+    touch-action: none;
+    touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+    /* Desativa todas as ações de toque quando tanto o arrasto quanto o zoom estão ativos (evita conflito) */
+    -ms-touch-action: none;
+    touch-action: none;
+}
+.leaflet-container {
+    /* Remove o efeito de realce que aparece ao tocar em elementos (específico para mobile) */
+    -webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+    /* Define a cor de realce ao tocar em links dentro do mapa */
+    -webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+
+/*
+================================================================================
+VISIBILIDADE DO TILE (Otimização de Carregamento)
+Lida com a visibilidade dos tiles durante o carregamento para evitar flashes.
+================================================================================
+*/
+.leaflet-tile {
+    filter: inherit;
+    visibility: hidden; /* Tiles ficam invisíveis enquanto carregam */
+    }
+.leaflet-tile-loaded {
+    visibility: inherit; /* Tiles se tornam visíveis após o carregamento */
+    }
+
+/*
+================================================================================
+ZOOM BOX (Caixa de Zoom com Shift+Arrastar)
+Estiliza a caixa que aparece ao usar o recurso de zoom de caixa.
+================================================================================
+*/
+.leaflet-zoom-box {
+    width: 0;
+    height: 0;
+    -moz-box-sizing: border-box;
+          box-sizing: border-box;
+    z-index: 800;
+    }
+.leaflet-overlay-pane svg {
+    /* Impede a seleção de texto dentro de SVGs */
+    -moz-user-select: none;
+    }
+
+/*
+================================================================================
+Z-INDEXES (Ordem de Empilhamento)
+Define qual painel do mapa fica por cima do outro (importante para camadas).
+================================================================================
+*/
+/* Estrutura de Z-Index do Leaflet (Ordem de Empilhamento) */
+
+.leaflet-pane { 
+    z-index: 400; 
+} /* Contêiner genérico para painéis */
+
+.leaflet-tile-pane { 
+    z-index: 200; 
+} /* Tiles (o mapa de fundo) */
+
+.leaflet-overlay-pane { 
+    z-index: 400; 
+} /* Sobreposições vetoriais (polígonos, linhas) */
+
+.leaflet-shadow-pane { 
+    z-index: 500; 
+} /* Sombras dos marcadores */
+
+.leaflet-marker-pane { 
+    z-index: 600; 
+} /* Marcadores (ícones) */
+
+.leaflet-tooltip-pane { 
+    z-index: 650; 
+} /* Tooltips (dicas) */
+
+.leaflet-popup-pane { 
+    z-index: 700; 
+} /* Popups (janelas de informação) */
+
+/* Configurações específicas dentro do contêiner principal */
+
+.leaflet-map-pane canvas { 
+    z-index: 100; 
+} /* Camadas de desenho em Canvas */
+
+.leaflet-map-pane svg { 
+    z-index: 200; 
+} 
+
+/* Camadas de desenho em SVG 
+================================================================================
+CONTROLES E POSICIONAMENTO
+Estiliza e posiciona os elementos de controle (zoom, camadas).
+================================================================================
+*/
+.leaflet-control {
+    position: relative;
+    z-index: 800; /* Ficam acima de tudo, exceto popups */
+    pointer-events: visiblePainted;
+    pointer-events: auto; /* Permite cliques */
+    }
+.leaflet-top,
+.leaflet-bottom {
+    position: absolute;
+    z-index: 1000;
+    pointer-events: none; /* Desativa cliques na área para que o mapa receba os eventos */
+    }
+.leaflet-top {
+    top: 0;
+    }
+.leaflet-right {
+    right: 0;
+    }
+.leaflet-bottom {
+    bottom: 0;
+    }
+.leaflet-left {
+    left: 0;
+    }
+.leaflet-control {
+    float: left; /* Controles em cada canto são empilhados na horizontal */
+    clear: both; /* Força o próximo controle a ir para a próxima linha */
+    }
+.leaflet-right .leaflet-control {
+    float: right;
+    }
+.leaflet-top .leaflet-control {
+    margin-top: 10px; /* Margem padrão dos controles */
+    }
+.leaflet-bottom .leaflet-control {
+    margin-bottom: 10px;
+    }
+.leaflet-left .leaflet-control {
+    margin-left: 10px;
+    }
+.leaflet-right .leaflet-control {
+    margin-right: 10px;
+    }
+
+
+/*
+================================================================================
+ANIMAÇÕES DE ZOOM E FADE
+Define as transições suaves ao interagir com o mapa.
+================================================================================
+*/
+.leaflet-fade-anim .leaflet-popup {
+    opacity: 0;
+    -webkit-transition: opacity 0.2s linear;
+        -moz-transition: opacity 0.2s linear;
+             transition: opacity 0.2s linear;
+    }
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+    opacity: 1; /* Transição de fade-in para popups */
+    }
+.leaflet-zoom-animated {
+    /* Define o ponto de origem das transformações de zoom e pan */
+    -webkit-transform-origin: 0 0;
+        -ms-transform-origin: 0 0;
+            transform-origin: 0 0;
+    }
+svg.leaflet-zoom-animated {
+    will-change: transform; /* Dica para o navegador otimizar a animação de transformação */
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+    /* Define a transição de transformação (movimento) suave para o zoom */
+    -webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+        -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+            transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+    }
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+    /* Desativa transições nos tiles durante o zoom/pan para melhor performance */
+    -webkit-transition: none;
+        -moz-transition: none;
+            transition: none;
+    }
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+    visibility: hidden; /* Oculta elementos que não devem ser visíveis durante a animação de zoom */
+    }
+
+
+/*
+================================================================================
+CURSORES
+Define o ícone do cursor para diferentes interações.
+================================================================================
+*/
+.leaflet-interactive {
+    cursor: pointer; /* Cursor padrão para elementos interativos */
+    }
+.leaflet-grab {
+    cursor: -webkit-grab;
+    cursor:    -moz-grab;
+    cursor:         grab; /* Cursor de "mão aberta" para indicar que o mapa pode ser arrastado */
+    }
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+    cursor: crosshair; /* Cursor de mira (usado para zoom de caixa) */
+    }
+.leaflet-popup-pane,
+.leaflet-control {
+    cursor: auto; /* Cursor padrão para painéis de popup e controle */
+    }
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+    cursor: move;
+    cursor: -webkit-grabbing;
+    cursor:    -moz-grabbing;
+    cursor:         grabbing; /* Cursor de "mão fechada" para indicar que o mapa está sendo arrastado */
+    }
+
+/*
+================================================================================
+INTERATIVIDADE DE MARCADORES E SOBREPOSIÇÕES
+Controla quais elementos podem receber eventos de clique/mouse.
+================================================================================
+*/
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+    pointer-events: none; /* Elementos normalmente ignoram eventos de mouse (tiles, sombras) */
+    }
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+    pointer-events: visiblePainted;
+    pointer-events: auto; /* Elementos interativos (como marcadores clicáveis ou polígonos) recebem eventos de mouse */
+    }
+
+/*
+================================================================================
+ESTILOS VISUAIS GERAIS
+Define cores de fundo, links e fontes.
+================================================================================
+*/
+.leaflet-container {
+    background: #ddd; /* Cor de fundo do mapa (visível antes dos tiles carregarem) */
+    outline-offset: 1px;
+    }
+.leaflet-container a {
+    color: #0078A8; /* Cor padrão dos links dentro do mapa */
+    }
+.leaflet-zoom-box {
+    border: 2px dotted #38f;
+    background: rgba(255,255,255,0.5); /* Estilo da caixa de zoom de seleção */
+    }
+
+.leaflet-container {
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-size: 0.75rem;
+    line-height: 1.5; /* Fontes padrão do mapa */
+    }
+
+/*
+================================================================================
+BARRA DE CONTROLE DE ZOOM
+Estiliza o painel de botões de zoom.
+================================================================================
+*/
+.leaflet-bar {
+    box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+    border-radius: 4px; /* Sombra e borda arredondada da barra */
+    }
+.leaflet-bar a {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    }
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    display: block;
+    }
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+    background-color: #f4f4f4; /* Efeito hover nos botões */
+    }
+.leaflet-bar a:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    }
+.leaflet-bar a:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom: none; /* Remove a borda inferior do último botão */
+    }
+.leaflet-bar a.leaflet-disabled {
+    cursor: default;
+    background-color: #f4f4f4;
+    color: #bbb; /* Estilo para botões desativados */
+    }
+
+/* Estilos de zoom para dispositivos touch */
+.leaflet-touch .leaflet-bar a {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    }
+.leaflet-touch .leaflet-bar a:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    }
+.leaflet-touch .leaflet-bar a:last-child {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    }
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    font: bold 18px 'Lucida Console', Monaco, monospace;
+    text-indent: 1px; /* Estilo do texto (+ e -) dos botões de zoom */
+    }
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out {
+    font-size: 22px; /* Aumenta a fonte do zoom para touch */
+    }
+
+/*
+================================================================================
+CONTROLE DE CAMADAS (LAYERS)
+Estiliza o painel de seleção de camadas (se houver).
+================================================================================
+*/
+.leaflet-control-layers {
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    background: #fff;
+    border-radius: 5px;
+    }
+.leaflet-control-layers-toggle {
+    background-image: url(images/layers.png);
+    width: 36px;
+    height: 36px; /* Define o ícone de alternância de camadas */
+    }
+.leaflet-retina .leaflet-control-layers-toggle {
+    background-image: url(images/layers-2x.png);
+    background-size: 26px 26px; /* Ícone de alta resolução para telas Retina */
+    }
+.leaflet-touch .leaflet-control-layers-toggle {
+    width: 44px;
+    height: 44px; /* Aumenta o tamanho do botão para touch */
+    }
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+    display: none; /* Oculta a lista de camadas quando o painel não está expandido */
+    }
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+    display: block; /* Mostra a lista de camadas quando o painel está expandido */
+    position: relative;
+    }
+.leaflet-control-layers-expanded {
+    padding: 6px 10px 6px 6px;
+    color: #333;
+    background: #fff; /* Estilo do painel de camadas expandido */
+    }
+.leaflet-control-layers-scrollbar {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 5px; /* Estilo da barra de rolagem, se houver muitas camadas */
+    }
+.leaflet-control-layers-selector {
+    margin-top: 2px;
+    position: relative;
+    top: 1px; /* Estilo dos botões de rádio/checkbox das camadas */
+    }
+.leaflet-control-layers label {
+    display: block;
+    font-size: 13px;
+    font-size: 1.08333em;
+    }
+.leaflet-control-layers-separator {
+    height: 0;
+    border-top: 1px solid #ddd;
+    margin: 5px -10px 5px -6px; /* Linha de separação entre tipos de camadas (base e overlay) */
+    }
+
+
+.leaflet-default-icon-path { /* usado apenas para adivinhar o caminho do ícone padrão, ver L.Icon.Default */
+    background-image: url(images/marker-icon.png);
+    }
+
+/*
+================================================================================
+ATRIBUIÇÃO E ESCALA
+Estiliza a notificação de crédito (Attribution) e a barra de escala.
+================================================================================
+*/
+.leaflet-container .leaflet-control-attribution {
+    background: #fff;
+    background: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente */
+    margin: 0;
+    }
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+    padding: 0 5px;
+    color: #333;
+    line-height: 1.4;
+    }
+.leaflet-control-attribution a {
+    text-decoration: none;
+    }
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+    text-decoration: underline;
+    }
+.leaflet-attribution-flag {
+    display: inline !important;
+    vertical-align: baseline !important;
+    width: 1em;
+    height: 0.6669em;
+    }
+.leaflet-left .leaflet-control-scale {
+    margin-left: 5px;
+    }
+.leaflet-bottom .leaflet-control-scale {
+    margin-bottom: 5px;
+    }
+.leaflet-control-scale-line {
+    border: 2px solid #777;
+    border-top: none;
+    line-height: 1.1;
+    padding: 2px 5px 1px;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+          box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px #fff; /* Estilo da barra de escala */
+    }
+.leaflet-control-scale-line:not(:first-child) {
+    border-top: 2px solid #777;
+    border-bottom: none;
+    margin-top: -2px;
+    }
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+    border-bottom: 2px solid #777;
+    }
+
+/* Ajustes de estilo para dispositivos touch */
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+    box-shadow: none; /* Remove a sombra em touch para um visual mais limpo */
+    }
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+    border: 2px solid rgba(0,0,0,0.2);
+    background-clip: padding-box;
+    }
+
+/*
+================================================================================
+POPUPS (Janelas Flutuantes de Informação)
+Estiliza os balões que aparecem ao clicar em um marcador.
+================================================================================
+*/
+.leaflet-popup {
+    position: absolute;
+    text-align: center;
+    margin-bottom: 20px;
+    }
+.leaflet-popup-content-wrapper {
+    padding: 1px;
+    text-align: left;
+    border-radius: 12px; /* Borda arredondada do corpo do popup */
+    }
+.leaflet-popup-content {
+    margin: 13px 24px 13px 20px;
+    line-height: 1.3;
+    font-size: 13px;
+    font-size: 1.08333em;
+    min-height: 1px;
+    }
+.leaflet-popup-content p {
+    margin: 17px 0;
+    margin: 1.3em 0;
+    }
+.leaflet-popup-tip-container {
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    left: 50%;
+    margin-top: -1px;
+    margin-left: -20px;
+    overflow: hidden;
+    pointer-events: none; /* Contêiner para a ponta do balão */
+    }
+.leaflet-popup-tip {
+    width: 17px;
+    height: 17px;
+    padding: 1px;
+
+    margin: -10px auto 0;
+    pointer-events: auto;
+
+    -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg); /* Gira o quadrado para criar a ponta do balão */
+    }
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: white;
+    color: #333;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4); /* Fundo branco e sombra do popup e da ponta */
+    }
+.leaflet-container a.leaflet-popup-close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    font: 16px/24px Tahoma, Verdana, sans-serif;
+    color: #757575;
+    text-decoration: none;
+    background: transparent; /* Botão de fechar (X) */
+    }
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+    color: #585858;
+    }
+.leaflet-popup-scrolled {
+    overflow: auto; /* Adiciona barra de rolagem se o conteúdo for muito longo */
+    }
+
+/* Estilos de compatibilidade com navegadores antigos (IE) */
+.leaflet-oldie .leaflet-popup-content-wrapper {
+    -ms-zoom: 1;
+    }
+.leaflet-oldie .leaflet-popup-tip {
+    width: 24px;
+    margin: 0 auto;
+
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+    }
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+    border: 1px solid #999;
+    }
+
+
+.leaflet-div-icon {
+    background: #fff;
+    border: 1px solid #666; /* Estilo padrão para ícones criados com div */
+    }
+
+/*
+================================================================================
+TOOLTIPS (Dicas de Ferramenta)
+Estiliza caixas de texto pequenas que aparecem ao passar o mouse.
+================================================================================
+*/
+.leaflet-tooltip {
+    position: absolute;
+    padding: 6px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    color: #222;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none; /* Normalmente não interage com o mouse */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+.leaflet-tooltip.leaflet-interactive {
+    cursor: pointer;
+    pointer-events: auto; /* Permite cliques/interação em tooltips interativos */
+    }
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+    position: absolute;
+    pointer-events: none;
+    border: 6px solid transparent;
+    background: transparent;
+    content: ""; /* Cria a ponta do tooltip (usando bordas) */
+    }
+
+/* Estilos de Direção da Ponta do Tooltip (bottom, top, left, right) */
+
+.leaflet-tooltip-bottom {
+    margin-top: 6px;
+}
+.leaflet-tooltip-top {
+    margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+    left: 50%;
+    margin-left: -6px;
+    }
+.leaflet-tooltip-top:before {
+    bottom: 0;
+    margin-bottom: -12px;
+    border-top-color: #fff; /* Ponta do tooltip superior */
+    }
+.leaflet-tooltip-bottom:before {
+    top: 0;
+    margin-top: -12px;
+    margin-left: -6px;
+    border-bottom-color: #fff; /* Ponta do tooltip inferior */
+    }
+.leaflet-tooltip-left {
+    margin-left: -6px;
+}
+.leaflet-tooltip-right {
+    margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+    top: 50%;
+    margin-top: -6px;
+    }
+.leaflet-tooltip-left:before {
+    right: 0;
+    margin-right: -12px;
+    border-left-color: #fff; /* Ponta do tooltip esquerdo */
+    }
+.leaflet-tooltip-right:before {
+    left: 0;
+    margin-left: -12px;
+    border-right-color: #fff; /* Ponta do tooltip direito */
+    }
+
+/*
+================================================================================
+MÍDIA DE IMPRESSÃO
+Ajustes para quando o mapa é impresso.
+================================================================================
+*/
+@media print {
+    .leaflet-control {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact; /* Garante que os controles sejam impressos exatamente como são exibidos */
+        }
+    }
+
+    /* Isso garante que o popup e seus botões fiquem acima do mapa */
+.leaflet-popup-pane {
+    z-index: 10000; /* Use um valor bem alto */
+}
+
+
+.leaflet-marker-pane {
+    z-index: 9999;
+}
+
+#localizar{
+    background-color: rgb(91, 91, 238);
+}
+
+.col-md-8 :hover{
+    transform: scale(1.005);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+}
+
+.logo :hover{
+    transform: scale(1.05);
+
+}
+
+.login-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.engracadinho {
+    visibility: hidden; 
+    opacity: 0;
+    
+
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    
+
+    margin: 10px auto 0; 
+    display: block; 
+}
+
+.login-actions:hover ~ .engracadinho {
+  
+    visibility: visible;
+    opacity: 1; 
+}
+
+.card {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+body.bg-light {
+    background-color: #f4f7f6 !important;
+}
